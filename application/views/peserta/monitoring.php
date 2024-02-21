@@ -79,11 +79,26 @@
             </div>
         </div>
     </div>
+
+
+    <!-- Project Card Example -->
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">Sekolah/Madrasah</h6>
+        </div>
+
+        <div class="card-body">
+            <?php $no = 1;
+            foreach ($dasar as $pes) : ?>
+                <h4 class="small font-weight-bold"><?= $no++ . ". " . strtoupper($pes); ?> <span class="float-right"><?= $jumlahdasar[$pes]; ?></span></h4>
+                <div class="progress mb-4">
+                    <div class="progress-bar bg-primary" role="progressbar" style="width:<?= ($jumlahdasar[$pes] / $jumlah) * 100 ?>%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
+            <?php endforeach; ?>
+        </div>
+    </div>
+
 </div>
 <!-- /.container-fluid -->
-
-
-
-
 </div>
 <!-- End of Main Content -->

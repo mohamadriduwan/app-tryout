@@ -48,8 +48,8 @@
                                 <td><?= $no++; ?></td>
                                 <td><?= $us['no_peserta']; ?>-<?= $us['password']; ?></td>
                                 <td><?= $us['nisn']; ?></td>
-                                <td><?= $us['nama']; ?></td>
-                                <td><?= $us['asal_sekolah']; ?></td>
+                                <td><?= strtoupper($us['nama']); ?></td>
+                                <td><?= strtoupper($us['asal_sekolah']); ?></td>
                                 <td>
                                     <center>
                                         <?php if ($us['pembayaran'] == 0) { ?>

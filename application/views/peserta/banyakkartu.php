@@ -114,7 +114,7 @@
                                 </td>
                                 <td class="ukuran" style="text-align:right; vertical-align:top">
                                     User-Password :<br>
-                                    <b class="ukuran3"><?= $siswa['no_peserta'] ?>-<?= $siswa['password'] ?></b>
+                                    <b class="ukuran3"><?= $siswa['no_peserta']; ?>-<?= $siswa['password']; ?></b>
                                 </td>
                             </tr>
                         </table>
@@ -123,23 +123,23 @@
                             <tr>
                                 <td class="ukuran" valign='top' width="130px">Nama</td>
                                 <td class="ukuran" valign='top' width="5px">:</td>
-                                <td class="<?= $ukuran; ?>" valign='top' colspan="2"><b class="ukuran"><?= $siswa['nama'] ?><b></td>
+                                <td class="<?= $ukuran; ?>" valign='top' colspan="2"><b class="ukuran"><?= strtoupper(); ?><b></td>
                             </tr>
                             <tr>
                                 <td class="ukuran" valign='top'>NISN</td>
                                 <td class="ukuran" valign='top'>:</td>
-                                <td class="ukuran" valign='top' colspan="2"><?= $siswa['nisn'] ?></td>
+                                <td class="ukuran" valign='top' colspan="2"><?= $siswa['nisn']; ?></td>
                             </tr>
                             <tr>
                                 <td class="ukuran" valign='top'>Asal Sekolah</td>
                                 <td class="ukuran" valign='top'>:</td>
-                                <td class="ukuran" valign='top' colspan="2"><?= $siswa['asal_sekolah'] ?></td>
+                                <td class="ukuran" valign='top' colspan="2"><?= $siswa['asal_sekolah']; ?></td>
                             </tr>
                             <tr>
 
                                 <td class="ukuran" valign='top'>No HP</td>
                                 <td class="ukuran" valign='top'>:</td>
-                                <td class="ukuran" valign='top' colspan="2"><?= $siswa['no_hp'] ?></td>
+                                <td class="ukuran" valign='top' colspan="2"><?= $siswa['no_hp']; ?></td>
 
                             </tr>
                             <tr>

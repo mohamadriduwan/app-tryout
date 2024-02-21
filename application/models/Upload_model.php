@@ -26,4 +26,12 @@ class Upload_model extends CI_Model
             $this->db->insert('data_nilai', $dataUpload);
         }
     }
+
+    public function import_watshap($dataUpload)
+    {
+        $jumlah = count($dataUpload);
+        if ($jumlah > 0) {
+            $this->db->insert('data_watshap', $dataUpload);
+        }
+    }
 }

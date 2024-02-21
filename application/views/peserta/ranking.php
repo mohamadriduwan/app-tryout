@@ -282,7 +282,7 @@
 
     <?php if ($nilaiBingg) : ?>
         <!-- Approach -->
-        <?php $no = 1; ?>
+        <!-- <?php $no = 1; ?>
         <?php foreach ($nilaiBingg as $us) : ?>
             <?php if (!in_array($us['no_peserta'], $juara3)) : ?>
                 <?php $urut = $no++; ?>
@@ -347,14 +347,14 @@
                 <?php
                 $juara4 = array_merge($bingg2, $juara3); ?>
             </div>
-        </div>
+        </div> -->
     <?php endif; ?>
 
     <?php if ($nilaiPai) : ?>
         <!-- Approach -->
         <?php $no = 1; ?>
         <?php foreach ($nilaiPai as $us) : ?>
-            <?php if (!in_array($us['no_peserta'], $juara4)) : ?>
+            <?php if (!in_array($us['no_peserta'], $juara3)) : ?>
                 <?php $urut = $no++; ?>
                 <?php if ($urut < 4) : ?>
                     <?php $pai[] = $us; ?>

@@ -22,6 +22,13 @@ class Peserta extends CI_Controller
     $data['title'] = 'Monitoring';
     $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
 
+    $datapeserta = $this->db->get('data_peserta')->result_array();
+    foreach ($datapeserta as $dp) :
+      $jumlah[] = $dp['asal_sekolah'];
+    endforeach;
+    $data['dasar'] = array_unique($jumlah);
+    $data['jumlahdasar'] = array_count_values($jumlah);
+
     $data['jumlah'] = $this->db->get('data_peserta')->num_rows();
     $data['jumlahbelum'] = $this->db->get_where('data_peserta', ['pembayaran' => '0'])->num_rows();
     $data['jumlahbayar'] = $this->db->get_where('data_peserta', ['pembayaran' => '1'])->num_rows();
@@ -432,5 +439,159 @@ class Peserta extends CI_Controller
     $orientation = "Landscape";
     $html = $this->load->view('peserta/sertifikat', $data, true);
     $this->pdfgenerator->generate($html, $file_pdf, $paper, $orientation);
+  }
+  public function watshap()
+  {
+    $data['title'] = 'Watshap';
+    $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+
+    $data['pengguna'] = $this->db->get('data_watshap')->result_array();
+
+
+    $this->load->view('templates/header', $data);
+    $this->load->view('templates/sidebar', $data);
+    $this->load->view('templates/topbar', $data);
+    $this->load->view('peserta/watshap', $data);
+    $this->load->view('templates/footer');
+  }
+
+  public function kirimWA()
+  {
+    $data['title'] = 'Watshap';
+    $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+
+    $siswa = $this->db->get('data_watshap')->result_array();
+
+    $numRow = 1;
+    foreach ($siswa as $s) :
+
+      $nohp = $s['no_hp'];
+      $nama = $s['nama'];
+      $tokenujian = $s['token'];
+      $ruang = $s['ruang'];
+
+      // kadang ada penulisan no hp 0811 239 345
+      $nohp = str_replace(" ", "", $nohp);
+      // kadang ada penulisan no hp (0274) 778787
+      $nohp = str_replace("(", "", $nohp);
+      // kadang ada penulisan no hp (0274) 778787
+      $nohp = str_replace(")", "", $nohp);
+      // kadang ada penulisan no hp 0811.239.345
+      $nohp = str_replace(".", "", $nohp);
+
+      // cek apakah no hp mengandung karakter + dan 0-9
+      if (!preg_match('/[^+0-9]/', trim($nohp))) {
+        // cek apakah no hp karakter 1-3 adalah +62
+        if (substr(trim($nohp), 0, 2) == '62') {
+          $hp = trim($nohp);
+        }
+        // cek apakah no hp karakter 1 adalah 0
+        elseif (substr(trim($nohp), 0, 1) == '0') {
+          $hp = '62' . substr(trim($nohp), 1);
+        }
+      }
+
+      //WA SEND
+      $token = "FXPeBUgeKxbQWFAWS11vECpNikLJ8owxWBoyXFAk8AMXcWdViP";
+      $phone = $hp; //untuk group pakai groupid contoh: 62812xxxxxx-xxxxx
+      $message = "Assalamu'alaikum," . PHP_EOL . "Kepada : *" . $nama . "*" . PHP_EOL . "No Pendaftaran : " . $tokenujian . PHP_EOL . "Berdasarkan hasil Tes Masuk MTs. Ma'arif Bakung 2024, anda dinyatakan *DITERIMA* sebagai siswa baru di MTs. Ma'arif Bakung, untuk itu *WALI SISWA* harap hadir di MTs. Ma'arif Bakung pada :" . PHP_EOL . "Hari: Senin, 12 Februari 2024" . PHP_EOL . "Waktu : Jam 08.00 WIB" . PHP_EOL . "Tempat : Ruang Multimedia Lt.2" . PHP_EOL . "Keperluan : Wawancara" . PHP_EOL . "Demikian pengumuman ini," . PHP_EOL . "Wassalamu'alaikum";
+      $messageid = ""; //optional
+      $curl = curl_init();
+      curl_setopt_array($curl, array(
+        CURLOPT_URL => 'https://lite.wanesia.com/api/send_express',
+        CURLOPT_RETURNTRANSFER => true,
+        CURLOPT_ENCODING => '',
+        CURLOPT_MAXREDIRS => 10,
+        CURLOPT_TIMEOUT => 0,
+        CURLOPT_FOLLOWLOCATION => true,
+        CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+        CURLOPT_CUSTOMREQUEST => 'POST',
+        CURLOPT_POSTFIELDS => 'token=' . $token . '&number=' . $phone . '&message=' . $message . '&messageid=' . $messageid,
+      ));
+      $response = curl_exec($curl);
+      curl_close($curl);
+      //AKHIR WA SEND
+
+      $data = [
+        'keterangan' => 1
+      ];
+
+      $this->db->where('token', $tokenujian);
+      $this->db->update('data_watshap', $data);
+      $numRow++;
+
+    endforeach;
+    $this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible fade show" role="alert">
+    <strong>Berhasil !</strong> ' . $numRow . ' Watshap Terkirim!
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>');
+    redirect('peserta/watshap');
+  }
+
+  public function uploadWatshap()
+  {
+    $this->load->model('Upload_model');
+
+    $config['upload_path'] = './temp/';
+    $config['allowed_types'] = 'xlsx|xls';
+    $config['file_name'] = 'doc' . time();
+    $this->load->library('upload', $config);
+
+    $this->load->model('Peserta_model');
+    if ($this->upload->do_upload('importexcel')) {
+      $file = $this->upload->data();
+      $reader = ReaderEntityFactory::createXLSXReader();
+      $reader->open('temp/' . $file['file_name']);
+      foreach ($reader->getSheetIterator() as $sheet) {
+        $numRow = 1;
+        foreach ($sheet->getRowIterator() as $row) {
+          if ($numRow > 1) {
+            $dataUpload = array(
+              'token'  => $row->getCellAtIndex(1),
+              'nisn'  => $row->getCellAtIndex(2),
+              'nama'   => $row->getCellAtIndex(3),
+              'kelas' => $row->getCellAtIndex(4),
+              'asal_sekolah' => $row->getCellAtIndex(5),
+              'no_hp' => $row->getCellAtIndex(6),
+              'ruang' => $row->getCellAtIndex(7)
+            );
+            $this->Upload_model->import_watshap($dataUpload);
+          }
+          $numRow++;
+          $jumlah = $numRow - 2;
+        }
+        $reader->close();
+        unlink('temp/' . $file['file_name']);
+        $this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible fade show" role="alert">
+        <strong>Berhasil !</strong> ' . $jumlah . ' Watshap ditambahkan!
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>');
+        redirect('peserta/watshap');
+      }
+    } else {
+      $this->session->set_flashdata('message', '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+      <strong>Gagal !</strong> 0 Watshap ditambahkan!
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>');
+      redirect('peserta/watshap');
+    };
+  }
+  public function HapusWA()
+  {
+    $this->db->TRUNCATE('data_watshap');
+
+    $this->session->set_flashdata('message', '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+      <strong>Berhasil !</strong> Menghapus semua data!
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>');
+    redirect('peserta/watshap');
   }
 }
