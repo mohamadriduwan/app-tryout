@@ -9,7 +9,7 @@ use Box\Spout\Reader\Common\Creator\ReaderEntityFactory;
 
 // sampai sini upload exel
 
-class Peserta extends CI_Controller
+class Tryout extends CI_Controller
 {
   public function __construct()
   {
@@ -37,7 +37,7 @@ class Peserta extends CI_Controller
     $this->load->view('templates/header', $data);
     $this->load->view('templates/sidebar', $data);
     $this->load->view('templates/topbar', $data);
-    $this->load->view('peserta/monitoring', $data);
+    $this->load->view('tryout/monitoring', $data);
     $this->load->view('templates/footer');
   }
 
@@ -52,7 +52,7 @@ class Peserta extends CI_Controller
     $this->load->view('templates/header', $data);
     $this->load->view('templates/sidebar', $data);
     $this->load->view('templates/topbar', $data);
-    $this->load->view('peserta/data', $data);
+    $this->load->view('tryout/data', $data);
     $this->load->view('templates/footer');
   }
 
@@ -89,7 +89,7 @@ class Peserta extends CI_Controller
                 </button>
               </div>');
       }
-      redirect('peserta/data');
+      redirect('tryout/data');
     } else {
       $string = "0123456789";
       $password = substr(str_shuffle($string), 0, 8);
@@ -113,7 +113,7 @@ class Peserta extends CI_Controller
               <span aria-hidden="true">&times;</span>
             </button>
           </div>');
-      redirect('peserta/data');
+      redirect('tryout/data');
     }
   }
 
@@ -133,7 +133,7 @@ class Peserta extends CI_Controller
           <span aria-hidden="true">&times;</span>
         </button>
       </div>');
-    redirect('peserta/data');
+    redirect('tryout/data');
   }
 
   public function editUser()
@@ -166,7 +166,7 @@ class Peserta extends CI_Controller
                 </button>
               </div>');
       }
-      redirect('peserta/data');
+      redirect('tryout/data');
     } else {
       $no_peserta = $this->input->post('no_peserta', true);
       $nisn = $this->input->post('nisn', true);
@@ -188,7 +188,7 @@ class Peserta extends CI_Controller
               <span aria-hidden="true">&times;</span>
             </button>
           </div>');
-      redirect('peserta/data');
+      redirect('tryout/data');
     }
   }
 
@@ -239,7 +239,7 @@ class Peserta extends CI_Controller
           <span aria-hidden="true">&times;</span>
         </button>
       </div>');
-        redirect('peserta/data');
+        redirect('tryout/data');
       }
     } else {
       $this->session->set_flashdata('message', '<div class="alert alert-danger alert-dismissible fade show" role="alert">
@@ -248,7 +248,7 @@ class Peserta extends CI_Controller
         <span aria-hidden="true">&times;</span>
       </button>
     </div>');
-      redirect('peserta/data');
+      redirect('tryout/data');
     };
   }
 
@@ -272,7 +272,7 @@ class Peserta extends CI_Controller
               <span aria-hidden="true">&times;</span>
             </button>
           </div>');
-    redirect('peserta/cetakkartu');
+    redirect('tryout/cetakkartu');
   }
 
   public function cetakKartu()
@@ -286,7 +286,7 @@ class Peserta extends CI_Controller
     $this->load->view('templates/header', $data);
     $this->load->view('templates/sidebar', $data);
     $this->load->view('templates/topbar', $data);
-    $this->load->view('peserta/cetakkartu', $data);
+    $this->load->view('tryout/cetakkartu', $data);
     $this->load->view('templates/footer');
   }
 
@@ -299,7 +299,7 @@ class Peserta extends CI_Controller
     $file_pdf = $data['title'] . " " . $id;
     $paper = 'A4';
     $orientation = "portrait";
-    $html = $this->load->view('peserta/kartu', $data, true);
+    $html = $this->load->view('tryout/kartu', $data, true);
     $this->pdfgenerator->generate($html, $file_pdf, $paper, $orientation);
   }
 
@@ -318,7 +318,7 @@ class Peserta extends CI_Controller
     $file_pdf = $data['title'];
     $paper = 'A4';
     $orientation = "portrait";
-    $html = $this->load->view('peserta/banyakkartu', $data, true);
+    $html = $this->load->view('tryout/banyakkartu', $data, true);
     $this->pdfgenerator->generate($html, $file_pdf, $paper, $orientation);
   }
 
@@ -335,7 +335,7 @@ class Peserta extends CI_Controller
     $this->load->view('templates/header', $data);
     $this->load->view('templates/sidebar', $data);
     $this->load->view('templates/topbar', $data);
-    $this->load->view('peserta/datanilai', $data);
+    $this->load->view('tryout/datanilai', $data);
     $this->load->view('templates/footer');
   }
 
@@ -380,7 +380,7 @@ class Peserta extends CI_Controller
           <span aria-hidden="true">&times;</span>
         </button>
       </div>');
-        redirect('peserta/datanilai');
+        redirect('tryout/datanilai');
       }
     } else {
       $this->session->set_flashdata('message', '<div class="alert alert-danger alert-dismissible fade show" role="alert">
@@ -389,7 +389,7 @@ class Peserta extends CI_Controller
         <span aria-hidden="true">&times;</span>
       </button>
     </div>');
-      redirect('peserta/datanilai');
+      redirect('tryout/datanilai');
     };
   }
 
@@ -410,7 +410,7 @@ class Peserta extends CI_Controller
     $this->load->view('templates/header', $data);
     $this->load->view('templates/sidebar', $data);
     $this->load->view('templates/topbar', $data);
-    $this->load->view('peserta/ranking', $data);
+    $this->load->view('tryout/ranking', $data);
     $this->load->view('templates/footer');
   }
 
@@ -437,7 +437,7 @@ class Peserta extends CI_Controller
     $file_pdf = $data['title'] . " " . $no_peserta;
     $paper = 'A4';
     $orientation = "Landscape";
-    $html = $this->load->view('peserta/sertifikat', $data, true);
+    $html = $this->load->view('tryout/sertifikat', $data, true);
     $this->pdfgenerator->generate($html, $file_pdf, $paper, $orientation);
   }
   public function watshap()
@@ -451,7 +451,7 @@ class Peserta extends CI_Controller
     $this->load->view('templates/header', $data);
     $this->load->view('templates/sidebar', $data);
     $this->load->view('templates/topbar', $data);
-    $this->load->view('peserta/watshap', $data);
+    $this->load->view('tryout/watshap', $data);
     $this->load->view('templates/footer');
   }
 
@@ -494,7 +494,11 @@ class Peserta extends CI_Controller
       //WA SEND
       $token = "FXPeBUgeKxbQWFAWS11vECpNikLJ8owxWBoyXFAk8AMXcWdViP";
       $phone = $hp; //untuk group pakai groupid contoh: 62812xxxxxx-xxxxx
-      $message = "Assalamu'alaikum," . PHP_EOL . "Kepada : *" . $nama . "*" . PHP_EOL . "No Pendaftaran : " . $tokenujian . PHP_EOL . "Berdasarkan hasil Tes Masuk MTs. Ma'arif Bakung 2024, anda dinyatakan *DITERIMA* sebagai siswa baru di MTs. Ma'arif Bakung, untuk itu *WALI SISWA* harap hadir di MTs. Ma'arif Bakung pada :" . PHP_EOL . "Hari: Senin, 12 Februari 2024" . PHP_EOL . "Waktu : Jam 08.00 WIB" . PHP_EOL . "Tempat : Ruang Multimedia Lt.2" . PHP_EOL . "Keperluan : Wawancara" . PHP_EOL . "Demikian pengumuman ini," . PHP_EOL . "Wassalamu'alaikum";
+      $message = "NB : Bagi siswa yang belum menyelesaikan administrasi pembayaran dan belum mengambil seragam, silakan melakukan pembayaran pada Hari : Senin, 1 Juli 2024 s.d 2 Juli 2024" . PHP_EOL
+        . "Atas perhatiannya, kami ucapkan terima kasih."  . PHP_EOL
+        . PHP_EOL . "Silahkan Gabung Group dengan tautan :" . PHP_EOL
+        . "https://chat.whatsapp.com/EyGjf1woY2N84JUUhT639P";
+
       $messageid = ""; //optional
       $curl = curl_init();
       curl_setopt_array($curl, array(
@@ -527,7 +531,7 @@ class Peserta extends CI_Controller
       <span aria-hidden="true">&times;</span>
     </button>
   </div>');
-    redirect('peserta/watshap');
+    redirect('tryout/watshap');
   }
 
   public function uploadWatshap()
@@ -570,7 +574,7 @@ class Peserta extends CI_Controller
           <span aria-hidden="true">&times;</span>
         </button>
       </div>');
-        redirect('peserta/watshap');
+        redirect('tryout/watshap');
       }
     } else {
       $this->session->set_flashdata('message', '<div class="alert alert-danger alert-dismissible fade show" role="alert">
@@ -579,7 +583,7 @@ class Peserta extends CI_Controller
         <span aria-hidden="true">&times;</span>
       </button>
     </div>');
-      redirect('peserta/watshap');
+      redirect('tryout/watshap');
     };
   }
   public function HapusWA()
@@ -592,6 +596,6 @@ class Peserta extends CI_Controller
         <span aria-hidden="true">&times;</span>
       </button>
     </div>');
-    redirect('peserta/watshap');
+    redirect('tryout/watshap');
   }
 }

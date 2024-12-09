@@ -64,7 +64,7 @@
                                     </center>
                                 </td>
                                 <td>
-                                    <a href="<?= base_url('peserta/kartu/' . $us['no_peserta']); ?>" target="_blank" class="btn btn-info btn-icon-split btn-sm">
+                                    <a href="<?= base_url('tryout/kartu/' . $us['no_peserta']); ?>" target="_blank" class="btn btn-info btn-icon-split btn-sm">
                                         <span class="icon text-white-50">
                                             <i class="fas fa-id-card"></i>
                                         </span>
@@ -96,7 +96,7 @@ foreach ($pengguna as $us) :
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form action="<?= base_url('peserta/editBayar'); ?>" method="post">
+                <form action="<?= base_url('tryout/editBayar'); ?>" method="post">
                     <div class="modal-body">
                         <div class="form-group">
                             <input type="text" class="form-control form-control-user" id="no_peserta" name="no_peserta" value="<?= $us['no_peserta']; ?>" readonly>
@@ -143,7 +143,7 @@ foreach ($pengguna as $us) :
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form action="<?= base_url('peserta/cetakBanyak'); ?>" method="post">
+            <form action="<?= base_url('tryout/cetakBanyak'); ?>" method="post">
                 <div class="modal-body">
                     <div class="form-group row">
                         <div class="col-sm-6 mb-3 mb-sm-0">

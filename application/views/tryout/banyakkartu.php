@@ -123,7 +123,7 @@
                             <tr>
                                 <td class="ukuran" valign='top' width="130px">Nama</td>
                                 <td class="ukuran" valign='top' width="5px">:</td>
-                                <td class="<?= $ukuran; ?>" valign='top' colspan="2"><b class="ukuran"><?= strtoupper(); ?><b></td>
+                                <td class="<?= $ukuran; ?>" valign='top' colspan="2"><b class="ukuran"><?= strtoupper($siswa['nama']); ?><b></td>
                             </tr>
                             <tr>
                                 <td class="ukuran" valign='top'>NISN</td>

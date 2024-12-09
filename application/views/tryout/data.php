@@ -104,7 +104,7 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form action="<?= base_url('peserta/addUser'); ?>" method="post">
+            <form action="<?= base_url('tryout/addUser'); ?>" method="post">
                 <div class="modal-body">
                     <div class="form-group">
                         <input type="text" oninput="numberOnly(this.id);" class="form-control form-control-user" maxlength="10" minlength="10" id="nisn" name="nisn" placeholder="NISN" value="<?= set_value('nisn'); ?>" required>
@@ -151,7 +151,7 @@ foreach ($pengguna as $us) :
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form action="<?= base_url('peserta/editUser'); ?>" method="post">
+                <form action="<?= base_url('tryout/editUser'); ?>" method="post">
                     <div class="modal-body">
                         <div class="form-group">
                             <input type="text" class="form-control form-control-user" id="no_peserta" name="no_peserta" value="<?= $us['no_peserta']; ?>" readonly>
@@ -202,7 +202,7 @@ foreach ($pengguna as $us) : $no++; ?>
                     </button>
                 </div>
 
-                <form action="<?= base_url('peserta/deleteUser'); ?>" method="post">
+                <form action="<?= base_url('tryout/deleteUser'); ?>" method="post">
                     <div class="modal-body">
                         <p>Anda yakin untuk menghapus pengguna yang bernama <strong><?= $us['nama']; ?></strong>?</p>
                         <div class="form-group">
@@ -229,7 +229,7 @@ foreach ($pengguna as $us) : $no++; ?>
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <?= form_open_multipart('peserta/uploadUsers') ?>
+            <?= form_open_multipart('tryout/uploadUsers') ?>
             <div class="modal-body">
                 <a href="<?= base_url('assets/data/template_users.xlsx'); ?>" class="btn btn-success btn-icon-split mt-2 mb-2 btn-sm float-right">
                     <span class="icon text-white-50">
@@ -264,7 +264,7 @@ foreach ($pengguna as $us) :
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form action="<?= base_url('peserta/editBayar'); ?>" method="post">
+                <form action="<?= base_url('tryout/editBayar'); ?>" method="post">
                     <div class="modal-body">
                         <div class="form-group">
                             <input type="text" class="form-control form-control-user" id="no_peserta" name="no_peserta" value="<?= $us['no_peserta']; ?>" readonly>

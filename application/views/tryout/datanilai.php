@@ -74,7 +74,7 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <?= form_open_multipart('peserta/uploadNilai') ?>
+            <?= form_open_multipart('tryout/uploadNilai') ?>
             <div class="modal-body">
                 <a href="<?= base_url('assets/data/template_nilai.xlsx'); ?>" class="btn btn-success btn-icon-split mt-2 mb-2 btn-sm float-right">
                     <span class="icon text-white-50">

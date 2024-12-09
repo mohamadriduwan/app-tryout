@@ -37,7 +37,7 @@
                                     <td align="center"><?= $urut; ?></td>
                                     <td align="center"><?= date('h:i:s', strtotime($us['waktu'])); ?></td>
                                     <td align="center">
-                                        <form action="<?= base_url('peserta/sertifikat'); ?>" method="post">
+                                        <form action="<?= base_url('tryout/sertifikat'); ?>" method="post">
                                             <input type="hidden" id="no_peserta" name="no_peserta" value="<?= $us['no_peserta']; ?>" readonly>
                                             <input type="hidden" id="nama" name="nama" value="<?= $us['nama']; ?>" readonly>
                                             <input type="hidden" id="asal_sekolah" name="asal_sekolah" value="<?= $us['asal_sekolah']; ?>" readonly>
@@ -115,7 +115,7 @@
                                 <td align="center"><?= $urutan; ?></td>
                                 <td align="center"><?= date('h:i:s', strtotime($us['waktu'])); ?></td>
                                 <td align="center">
-                                    <form action="<?= base_url('peserta/sertifikat'); ?>" method="post">
+                                    <form action="<?= base_url('tryout/sertifikat'); ?>" method="post">
                                         <input type="hidden" id="no_peserta" name="no_peserta" value="<?= $us['no_peserta']; ?>" readonly>
                                         <input type="hidden" id="nama" name="nama" value="<?= $us['nama']; ?>" readonly>
                                         <input type="hidden" id="asal_sekolah" name="asal_sekolah" value="<?= $us['asal_sekolah']; ?>" readonly>
@@ -185,7 +185,7 @@
                                 <td align="center"><?= $urutan; ?></td>
                                 <td align="center"><?= date('h:i:s', strtotime($us['waktu'])); ?></td>
                                 <td align="center">
-                                    <form action="<?= base_url('peserta/sertifikat'); ?>" method="post">
+                                    <form action="<?= base_url('tryout/sertifikat'); ?>" method="post">
                                         <input type="hidden" id="no_peserta" name="no_peserta" value="<?= $us['no_peserta']; ?>" readonly>
                                         <input type="hidden" id="nama" name="nama" value="<?= $us['nama']; ?>" readonly>
                                         <input type="hidden" id="asal_sekolah" name="asal_sekolah" value="<?= $us['asal_sekolah']; ?>" readonly>
@@ -255,7 +255,7 @@
                                 <td align="center"><?= $urutan; ?></td>
                                 <td align="center"><?= date('h:i:s', strtotime($us['waktu'])); ?></td>
                                 <td align="center">
-                                    <form action="<?= base_url('peserta/sertifikat'); ?>" method="post">
+                                    <form action="<?= base_url('tryout/sertifikat'); ?>" method="post">
                                         <input type="hidden" id="no_peserta" name="no_peserta" value="<?= $us['no_peserta']; ?>" readonly>
                                         <input type="hidden" id="nama" name="nama" value="<?= $us['nama']; ?>" readonly>
                                         <input type="hidden" id="asal_sekolah" name="asal_sekolah" value="<?= $us['asal_sekolah']; ?>" readonly>
@@ -325,7 +325,7 @@
                                 <td align="center"><?= $urutan; ?></td>
                                 <td align="center"><?= date('h:i:s', strtotime($us['waktu'])); ?></td>
                                 <td align="center">
-                                    <form action="<?= base_url('peserta/sertifikat'); ?>" method="post">
+                                    <form action="<?= base_url('tryout/sertifikat'); ?>" method="post">
                                         <input type="hidden" id="no_peserta" name="no_peserta" value="<?= $us['no_peserta']; ?>" readonly>
                                         <input type="hidden" id="nama" name="nama" value="<?= $us['nama']; ?>" readonly>
                                         <input type="hidden" id="asal_sekolah" name="asal_sekolah" value="<?= $us['asal_sekolah']; ?>" readonly>
@@ -396,7 +396,7 @@
                                 <td align="center"><?= $urutan; ?></td>
                                 <td align="center"><?= date('h:i:s', strtotime($us['waktu'])); ?></td>
                                 <td align="center">
-                                    <form action="<?= base_url('peserta/sertifikat'); ?>" method="post">
+                                    <form action="<?= base_url('tryout/sertifikat'); ?>" method="post">
                                         <input type="hidden" id="no_peserta" name="no_peserta" value="<?= $us['no_peserta']; ?>" readonly>
                                         <input type="hidden" id="nama" name="nama" value="<?= $us['nama']; ?>" readonly>
                                         <input type="hidden" id="asal_sekolah" name="asal_sekolah" value="<?= $us['asal_sekolah']; ?>" readonly>

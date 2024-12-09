@@ -80,7 +80,7 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form action="<?= base_url('peserta/kirimWA'); ?>" method="post">
+            <form action="<?= base_url('tryout/kirimWA'); ?>" method="post">
                 <div class="modal-body">
 
 
@@ -104,7 +104,7 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <?= form_open_multipart('peserta/uploadWatshap') ?>
+            <?= form_open_multipart('tryout/uploadWatshap') ?>
             <div class="modal-body">
                 <a href="<?= base_url('assets/data/template_watshap.xlsx'); ?>" class="btn btn-success btn-icon-split mt-2 mb-2 btn-sm float-right">
                     <span class="icon text-white-50">
@@ -135,7 +135,7 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form action="<?= base_url('peserta/HapusWA'); ?>" method="post">
+            <form action="<?= base_url('tryout/HapusWA'); ?>" method="post">
                 <div class="modal-body">
                     Yakin menghapus seluruh data?
                 </div>
